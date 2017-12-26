@@ -1,4 +1,4 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!-- The content below is only a placeholder and can be replaced.
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -17,4 +17,44 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul>
+ -->
 
+
+ <main class="content">
+  
+<h1>Electron Timer</h1>
+
+<div class="progress-wrapper" *ngIf="maxVal">
+
+  <div class="text" *ngIf="!isFinished">
+    {{ max - current | number: '1.1-1' }}
+  </div>
+  
+  <div class="text" *ngIf="isFinished">
+      ding!
+      <audio src="assets/chime.mp3" autoplay></audio>
+  </div>
+  
+  <round-progress
+          [max]="maxVal"
+          [current]="currentVal"
+          [radius]="100"
+          [stroke]="25">
+  </round-progress>
+  
+</div>
+
+<div class="controls-wrapper">
+      <div>
+        <label>Seconds</label>
+        <input class="input" placeholder="number of seconds" type="text" 
+        [(ngModel)]="max"
+        (keydown)="reset()">
+      </div>
+      
+  <button class="button is-info" *ngIf="currentVal <= 0" (click)="start()">Start</button>
+  <button class="button is-danger" *ngIf="!isFinished" (click)="finish()">Finish</button>
+</div>
+
+
+</main>
